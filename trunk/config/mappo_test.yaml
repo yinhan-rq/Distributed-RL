@@ -1,0 +1,90 @@
+#---- MAPPO 训练参数 ----
+
+# env_name: "football_11_vs_11_sysu"
+env_name: "football_11_vs_11_stochastic_2"
+learner: "mappo_learner"
+device: "cuda:2"
+num_env_steps: 10000000
+seed: 5
+gamma: 0.99
+lr: 2.0e-4
+critic_lr: 2.0e-4
+opti_eps: 1.0e-5 #优化器RMSprop 的epsilon
+weight_decay: 0
+thread_num: 4
+episode_length: 200
+eval_episode_length: 3000  
+left_agent_num: 11
+right_agent_num: 11
+
+#R_Critic R_Actor
+gain: 0.01
+use_orthogonal: True
+use_policy_active_masks: True 
+use_naive_recurrent_policy: False
+use_recurrent_policy: False
+# ---------------
+
+#CNN-------------
+use_ReLU: True
+# ---------------
+
+#MLP-------------
+use_feature_normalization : True
+stacked_frames : 1
+layer_N : 1
+# ---------------
+
+#PPOTrainer------
+clip_param : 0.15
+ppo_epoch : 7
+num_mini_batch : 4
+data_chunk_length : 10
+value_loss_coef : 1
+entropy_coef : 0.01
+max_grad_norm : 10.0
+huber_delta : 10.0
+
+use_recurrent_policy : False
+use_naive_recurrent : False
+use_max_grad_norm : True
+use_clipped_value_loss : True
+use_huber_loss : True
+use_value_active_masks : True
+use_policy_active_masks : True
+
+# ---------------
+
+gae_lambda: 0.95
+use_gae: True
+use_popart: False
+use_valuenorm: False
+use_proper_time_limits: False
+hidden_size: 64
+recurrent_N: 1
+
+use_centralized_V: True
+use_linear_lr_decay: False
+
+save_interval: 100
+use_eval: True
+eval_interval: 90
+log_interval: 1
+eval_episode_num: 4
+# ---- BUFFER ----
+
+#----- imitation learning-----
+use_gail: False
+expert_buffer_size: 1000000
+agent_num: 11
+gail_epoch: 8
+gail_batch_size: 100
+gail_exp_batch_size: 200
+D_lr: 1.0e-5
+imi_reward_weight: 0.2
+expert_loss_weight: 1  #用于调整D的权重
+IL_buffer_path: "./data/ILbuffer_withball.pt"
+reward_clip: 0.7
+
+#----- augment reward-----
+use_reward_warpper: False

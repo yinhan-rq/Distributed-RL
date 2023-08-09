@@ -1,0 +1,35 @@
+# ---- QMIX 训练参数 -----
+
+time_step: 1000000
+buffer_size: 100
+batch_size: 24
+device: 'cuda:0'
+gamma: 0.99
+lr: 0.0001
+test_frequency: 50
+test_episodes: 5
+save_frequency: 100
+update_target_frequency: 10
+# epsilon greedy
+epsilon_start: 1.0
+epsilon_end: 0.05
+annealing_steps: 100000
+#optimizer
+alpha: 0.99
+eps: 0.00001
+# env:5v5
+env_name: "football_5v5_malib"
+n_actions: 19
+action_dim: 1
+obs_dim: 133
+state_dim: 1064 #133 *8
+n_agents: 4
+episode_length: 3000
+
+# rnn 
+rnn_hidden_dim: 128
+# mixer
+mixing_embed_dim: 32
+hypernet_layers: 2
+hypernet_embed: 64
+ 
